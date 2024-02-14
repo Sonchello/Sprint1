@@ -1,0 +1,31 @@
+version: "3.6"
+
+services:
+  app:
+    build: ./
+    container_name: container
+    volumes:
+      - ./:/volume
+    ports:
+      - 8080:8080
+    expose:
+      - 8080
+    networks:
+      - network
+    depends_on:
+      - database
+  database:
+    image: postgres:latest
+    environment:
+      - POSTGRES_DB=myDatabase
+      - POSTGRES_USER=root
+      - POSTGRES_PASSWORD=1234
+    ports:
+      - 5432:5432
+    expose:
+      - 5432
+    networks:
+      - network
+networks:
+  sprint-network:
+    driver: bridge

@@ -12,6 +12,6 @@ fun main() {
 
 fun Application.module() {
     configureSerialization()
-    configureAuthentication()
     configureRouting()
+    configureWebSocket()
 }
